@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30114.105
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PjTimeSpan", "PjTimeSpan\PjTimeSpan.csproj", "{4CC7EB0B-B29B-4A8B-B825-5B8BD9AEB4EF}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4CC7EB0B-B29B-4A8B-B825-5B8BD9AEB4EF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4CC7EB0B-B29B-4A8B-B825-5B8BD9AEB4EF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4CC7EB0B-B29B-4A8B-B825-5B8BD9AEB4EF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4CC7EB0B-B29B-4A8B-B825-5B8BD9AEB4EF}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {75C640AF-FB50-49A6-BD4D-5EEC417CE9D3}
+	EndGlobalSection
+EndGlobal
