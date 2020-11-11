@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using ProjetoVendas.Models;
+using ProjetoVendas.Models.ViewModels;
 
 namespace ProjetoVendas.Controllers
 {
@@ -17,7 +18,7 @@ namespace ProjetoVendas.Controllers
 
         public IActionResult About()
         {
-            ViewData["Message"] = "Your application description page.";
+            ViewData["Message"] = "Curso C# - Aplicativo de vendas.";            
 
             return View();
         }
