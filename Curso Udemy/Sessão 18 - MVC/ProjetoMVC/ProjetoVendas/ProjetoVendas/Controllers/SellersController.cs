@@ -38,6 +38,12 @@ namespace ProjetoVendas.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult Create(Seller seller)
         {
+            if (!ModelState.IsValid)
+            {
+                var departments = _departmentService.FindAll();
+                var viewModel = new SellerFormViewModel { Seller = seller, Departments = departments };
+                return View(viewModel);
+            }
             _sellerService.Insert(seller);
             return RedirectToAction(nameof(Index));
         }
@@ -46,7 +52,7 @@ namespace ProjetoVendas.Controllers
         {
             if (id == null)
             {
-                return RedirectToAction(nameof(Error), new { message = "Id not provided"});
+                return RedirectToAction(nameof(Error), new { message = "Id not provided" });
             }
 
             var obj = _sellerService.FindById(id.Value);
@@ -96,7 +102,7 @@ namespace ProjetoVendas.Controllers
             }
 
             List<Department> departments = _departmentService.FindAll();
-            SellerFormViewModel viewModel = new SellerFormViewModel {Seller = obj, Departments = departments};
+            SellerFormViewModel viewModel = new SellerFormViewModel { Seller = obj, Departments = departments };
             return View(viewModel);
         }
 
@@ -104,11 +110,17 @@ namespace ProjetoVendas.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult Edit(int id, Seller seller)
         {
+            if (!ModelState.IsValid)
+            {
+                var departments = _departmentService.FindAll();
+                var viewModel = new SellerFormViewModel { Seller = seller, Departments = departments };
+                return View(viewModel);
+            }
             if (id != seller.Id)
             {
                 return RedirectToAction(nameof(Error), new { message = "Id mismatch" });
             }
-            
+
             try
             {
                 _sellerService.Update(seller);
@@ -117,12 +129,12 @@ namespace ProjetoVendas.Controllers
             catch (NotFoundException e)
             {
                 return RedirectToAction(nameof(Error), new { message = e.Message });
-            }      
+            }
         }
 
         public IActionResult Error(string message)
         {
-            var viewModel = new ErrorViewModel {Message = message, RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier };
+            var viewModel = new ErrorViewModel { Message = message, RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier };
             return View(viewModel);
         }
     }
