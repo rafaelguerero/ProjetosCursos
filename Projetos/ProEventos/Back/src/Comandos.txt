@@ -1,0 +1,3 @@
+Criar migration: dotnet ef migrations add Initial -o Data/Migrations
+
+Remover migration: dotnet ef migrations remove
