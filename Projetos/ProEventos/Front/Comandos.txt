@@ -1,0 +1,27 @@
+Instalar Angular CLI: npm install -g @angular/cli
+
+Habilitar powershell: Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy RemoteSigned
+
+Criar aplicação: ng new my-app
+
+Executar aplicação: ng serve --open, npm start
+
+Altearar politica de scripts(Administrador): set-ExecutionPolicy RemoteSigned
+
+Criar componentes: ng g c nome
+
+Diretivas: *ngFor
+
+ngOnInit: Método chamado antes de interpretar o html
+
+Instalar font awsome: npm install --save @fortawesome/fontawesome-free
+
+Instalar Angular Bootstrap: npm install ngx-bootstrap --save
+
+Adicionar no styles.scss
+
+    @import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
+    @import "../node_modules/ngx-bootstrap/datepicker/bs-datepicker.css";
+    @import "../node_modules/@fortawesome/fontawesome-free/css/all.min.css";
+
+Em app.module.ts, adicionar a referencia BrowserAnimationModule
