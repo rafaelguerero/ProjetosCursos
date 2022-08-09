@@ -12,6 +12,8 @@ Criar componentes: ng g c nome
 
 Diretivas: *ngFor
 
+Interpolação: {{ e.eventoId }}
+
 ngOnInit: Método chamado antes de interpretar o html
 
 Instalar font awsome: npm install --save @fortawesome/fontawesome-free
@@ -25,3 +27,6 @@ Adicionar no styles.scss
     @import "../node_modules/@fortawesome/fontawesome-free/css/all.min.css";
 
 Em app.module.ts, adicionar a referencia BrowserAnimationModule
+
+Criar tags html dinamicamente
+    tbody>td>td*8    
