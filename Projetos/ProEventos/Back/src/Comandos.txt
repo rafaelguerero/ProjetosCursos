@@ -1,3 +1,10 @@
-Criar migration: dotnet ef migrations add Initial -o Data/Migrations
+Criar migration: dotnet ef migrations add Initial -p ProEventos.Persistence -s ProEventos.API
 
 Remover migration: dotnet ef migrations remove
+
+Adicionar referências de projetos: dotnet add ProEventos.API/ProEventos.API.csproj reference ProEventos.Application 
+ou no ProEvenos.API > Dependencies, adicionar referencia de projetos
+ou no arquivo .csproj, adicionar a tag 
+<ItemGroup>
+    <ProjectReference Include="..\ProEventos.Application\ProEventos.Application.csproj" />    
+</ItemGroup>
