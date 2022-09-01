@@ -10,6 +10,8 @@ Altearar politica de scripts(Administrador): set-ExecutionPolicy RemoteSigned
 
 Criar componentes: ng g c nome
 
+Criar pipe: ng g p nome
+
 Diretivas: *ngFor
 
 Interpolação: {{ e.eventoId }}
@@ -19,6 +21,8 @@ ngOnInit: Método chamado antes de interpretar o html
 Instalar font awsome: npm install --save @fortawesome/fontawesome-free
 
 Instalar Angular Bootstrap: npm install ngx-bootstrap --save
+
+Instalar toastr: npm install ngx-toastr --save
 
 Adicionar no styles.scss
 
@@ -30,3 +34,8 @@ Em app.module.ts, adicionar a referencia BrowserAnimationModule
 
 Criar tags html dinamicamente
     tbody>td>td*8    
+
+Ctrl + shift + alt + seta para baixo: Cria cursores para seleção de linhas
+
+Ctrl + shift + p : lowercase
+I

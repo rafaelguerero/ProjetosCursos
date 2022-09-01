@@ -17,6 +17,7 @@
     <tr>
       <th>
         <button class="btn btn-outline-light btn-sm" (click)="alterarImagem()">
+          <i class="{{ ocultarImagem ? 'fa fa-eye' : 'fa fa-eye-slash' }}"></i>
           {{ ocultarImagem ? "Exibir" : "Ocultar" }}
         </button>
       </th>
@@ -40,17 +41,30 @@
           [isAnimated]="true"
         />
       </td>
-      <td>{{ e.eventoId }}</td>
+      <td>{{ e.id }}</td>
       <td>{{ e.tema }}</td>
       <td>{{ e.local }}</td>
-      <td>{{ e.dataEvento }}</td>
+      <td>{{ e.dataEvento | DateFormatPipe }}</td>
       <td>{{ e.qtdPessoas }}</td>
-      <td>{{ e.lote }}</td>
+      <td>{{ e.lotes[0].nome }}</td>
       <td>
-        <button type="button" class="btn btn-primary btn-sm mr-2">
-          Editar
-        </button>
-        <button type="button" class="btn btn-danger btn-sm">Excluir</button>
+        <div class="btn-group">
+          <button
+            type="button"
+            class="btn btn-primary btn-sm mr-2"
+            tooltip="Editar"
+          >
+            <i class="fa fa-edit"></i>
+          </button>
+          <button
+            type="button"
+            class="btn btn-danger btn-sm"
+            tooltip="Excluir"
+            (click)="openModal(template)"
+          >
+            <i class="fa fa-trash"></i>
+          </button>
+        </div>
       </td>
     </tr>
   </tbody>
@@ -60,3 +74,15 @@
     </tr>
   </tfoot>
 </table>
+
+<ng-template #template>
+  <div class="modal-body text-center">
+    <p>Deseja apagar este evento?</p>
+    <button type="button" class="btn btn-default" (click)="confirm()">
+      Sim
+    </button>
+    <button type="button" class="btn btn-primary" (click)="decline()">
+      Não
+    </button>
+  </div>
+</ng-template>

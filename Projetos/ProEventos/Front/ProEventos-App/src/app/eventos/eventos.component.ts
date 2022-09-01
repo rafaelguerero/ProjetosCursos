@@ -1,5 +1,9 @@
-import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, TemplateRef } from '@angular/core';
+import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
+import { ToastrService } from 'ngx-toastr';
+
+import { Evento } from '../models/Evento';
+import { EventoService } from '../services/evento.service';
 
 @Component({
   selector: 'app-eventos',
@@ -7,8 +11,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./eventos.component.scss'],
 })
 export class EventosComponent implements OnInit {
-  public eventos: any = [];
-  public eventosFiltrados: any = [];
+  modalRef?: BsModalRef;
+  public eventos: Evento[] = [];
+  public eventosFiltrados: Evento[] = [];
   public larguraImg: number = 150;
   public margemImg: number = 2;
   public ocultarImagem: boolean = true;
@@ -25,10 +30,15 @@ export class EventosComponent implements OnInit {
       : this.eventos;
   }
 
-  constructor(private http: HttpClient) {}
+  constructor(
+    private EventoService: EventoService,
+    private modalService: BsModalService,
+    private toastr: ToastrService
+  ) {}
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
     this.getEventos();
+    console.log();
   }
 
   public alterarImagem(): void {
@@ -36,20 +46,33 @@ export class EventosComponent implements OnInit {
   }
 
   public getEventos(): void {
-    this.http.get('https://localhost:5001/api/eventos').subscribe({
-      next: (v) => {
+    this.EventoService.getEventos().subscribe({
+      next: (v: Evento[]) => {
         (this.eventos = v), (this.eventosFiltrados = this.eventos);
       },
-      error: (e) => console.log(e),
+      error: (e: any) => console.log(e),
     });
   }
 
-  filtrarEventos(filtrarPor: string): any {
+  public filtrarEventos(filtrarPor: string): Evento[] {
     filtrarPor = filtrarPor.toLocaleLowerCase();
     return this.eventos.filter(
       (e: { tema: string; local: string }) =>
         e.tema.toLocaleLowerCase().indexOf(filtrarPor) !== -1 ||
         e.local.toLocaleLowerCase().indexOf(filtrarPor) !== -1
     );
+  }
+
+  public openModal(template: TemplateRef<any>): void {
+    this.modalRef = this.modalService.show(template, { class: 'modal-sm' });
+  }
+
+  public confirm(): void {
+    this.modalRef?.hide();
+    this.toastr.success('Sucesso', 'teste');
+  }
+
+  public decline(): void {
+    this.modalRef?.hide();
   }
 }
