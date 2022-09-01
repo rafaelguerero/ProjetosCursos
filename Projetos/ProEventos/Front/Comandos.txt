@@ -24,6 +24,8 @@ Instalar Angular Bootstrap: npm install ngx-bootstrap --save
 
 Instalar toastr: npm install ngx-toastr --save
 
+Instalar Spinner: $ npm install ngx-spinner --save
+
 Adicionar no styles.scss
 
     @import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
