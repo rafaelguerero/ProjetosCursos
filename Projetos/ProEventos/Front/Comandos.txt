@@ -1,5 +1,7 @@
 Instalar Angular CLI: npm install -g @angular/cli
 
+Atualizar angular: ng update @angular/core @angular/cli
+
 Habilitar powershell: Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy RemoteSigned
 
 Criar aplicação: ng new my-app
