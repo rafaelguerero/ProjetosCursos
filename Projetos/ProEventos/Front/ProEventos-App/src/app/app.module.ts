@@ -22,6 +22,8 @@ import { TitulosComponent } from './shared/components/titulos/titulos.component'
 import { ContatosComponent } from './components/contatos/contatos.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { PerfilComponent } from './components/perfil/perfil.component';
+import { EventoDetalheComponent } from './components/eventos/evento-detalhe/evento-detalhe.component';
+import { EventoListaComponent } from './components/eventos/evento-lista/evento-lista.component';
 
 @NgModule({
   declarations: [
@@ -34,6 +36,8 @@ import { PerfilComponent } from './components/perfil/perfil.component';
     ContatosComponent,
     DashboardComponent,
     PerfilComponent,
+    EventoDetalheComponent,
+    EventoListaComponent,
   ],
   imports: [
     BrowserModule,
