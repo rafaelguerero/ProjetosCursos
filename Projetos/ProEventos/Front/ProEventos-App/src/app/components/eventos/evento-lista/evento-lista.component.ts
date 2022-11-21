@@ -2,16 +2,15 @@ import { Component, OnInit, TemplateRef } from '@angular/core';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
-import { Evento } from 'src/app/models/Evento';
-import { EventoService } from 'src/app/services/evento.service';
+import { Evento } from '@app/models/Evento';
+import { EventoService } from '@app/services/evento.service';
 
 @Component({
   selector: 'app-evento-lista',
   templateUrl: './evento-lista.component.html',
-  styleUrls: ['./evento-lista.component.scss']
+  styleUrls: ['./evento-lista.component.scss'],
 })
 export class EventoListaComponent implements OnInit {
-
   public modalRef?: BsModalRef;
   public eventos: Evento[] = [];
   public eventosFiltrados: Evento[] = [];
@@ -81,5 +80,4 @@ export class EventoListaComponent implements OnInit {
   public decline(): void {
     this.modalRef?.hide();
   }
-
 }

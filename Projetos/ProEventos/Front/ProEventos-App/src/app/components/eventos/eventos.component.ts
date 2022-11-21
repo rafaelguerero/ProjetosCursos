@@ -3,8 +3,8 @@ import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
 
-import { Evento } from '../../models/Evento';
-import { EventoService } from '../../services/evento.service';
+import { Evento } from '@app/models/Evento';
+import { EventoService } from '@app/services/evento.service';
 
 @Component({
   selector: 'app-eventos',
@@ -12,11 +12,7 @@ import { EventoService } from '../../services/evento.service';
   styleUrls: ['./eventos.component.scss'],
 })
 export class EventosComponent implements OnInit {
-  constructor(
+  constructor() {}
 
-  ) {}
-
-  public ngOnInit(): void {
-
-  }
+  public ngOnInit(): void {}
 }
