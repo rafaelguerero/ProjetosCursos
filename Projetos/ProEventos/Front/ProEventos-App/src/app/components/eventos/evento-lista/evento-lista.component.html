@@ -20,7 +20,7 @@
       </a>
     </div>
   </div>
-  <table class="table table-striped">
+  <table class="table table-striped table-hover">
     <thead class="thead thead-dark">
       <tr>
         <th class="d-none d-md-table-cell">
@@ -44,7 +44,7 @@
       </tr>
     </thead>
     <tbody *ngIf="eventos && eventos.length">
-      <tr *ngFor="let e of eventosFiltrados">
+      <tr *ngFor="let e of eventosFiltrados" (click)="detalheEvento(e.id)" style="cursor: pointer;">
         <td class="d-none d-md-table-cell">
           <img
             src="/assets/{{ e.imageUrl }}"
