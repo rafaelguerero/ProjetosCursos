@@ -8,9 +8,9 @@ export interface Evento {
   local: string;
   dataEvento?: Date;
   qtdPessoas: number;
-  imageUrl: string;
   telefone: string;
   email: string;
+  imageUrl: string;
   lotes: Lote[];
   redesSociais: RedeSocial[];
   palestrantesEventos: Palestrante[];

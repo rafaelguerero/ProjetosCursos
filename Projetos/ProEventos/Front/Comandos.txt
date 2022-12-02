@@ -12,7 +12,7 @@ Comentar html: shift + alt + a
 
 Altearar politica de scripts(Administrador): set-ExecutionPolicy RemoteSigned
 
-Criar componentes: ng g c nome
+Criar componentes:  
 
 Criar pipe: ng g p nome
 
