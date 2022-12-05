@@ -1,7 +1,7 @@
 <app-titulos [titulo]="'Perfil'"></app-titulos>
 
 <div class="card rounded shadow-sm">
-  <form>
+  <form [formGroup]="form">
     <div class="row p-3">
       <div class="col-lg-3 pt-1">
         <div class="card mb-3">
@@ -9,16 +9,20 @@
           <div class="d-flex align-self-center pt-3">
             <a>
               <img
-              src="https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcRbezqZpEuwGSvitKy3wrwnth5kysKdRqBW54cAszm_wiutku3R"
-              name="aboutme" width="120" height="120" class="rounded-circle">
+                src="https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcRbezqZpEuwGSvitKy3wrwnth5kysKdRqBW54cAszm_wiutku3R"
+                name="aboutme"
+                width="120"
+                height="120"
+                class="rounded-circle"
+              />
             </a>
           </div>
           <div class="card-body">
             <div class="h4 text-center mb-3">@UserName</div>
             <div class="h7 text-bold pb-1"><b>Nome:</b> Miracles Lee Cross</div>
             <div class="h7">
-              Developer of web applications, JavaScript, PHP, Java, Python, Ruby, Java, Node.js,
-              etc.
+              Developer of web applications, JavaScript, PHP, Java, Python,
+              Ruby, Java, Node.js, etc.
             </div>
           </div>
           <ul class="list-group list-group-flush">
@@ -45,7 +49,14 @@
           </div>
           <div class="form-group col">
             <label>Título</label>
-            <select class="form-control">
+            <select
+              class="form-control"
+              formControlName="titulo"
+              [ngClass]="{
+                'is-invalid':
+                  formControls.titulo.errors && formControls.titulo.touched
+              }"
+            >
               <option value=""></option>
               <option value="0">Não Quero</option>
               <option value="Senhorita">Tecnólogo(a)</option>
@@ -56,38 +67,168 @@
               <option value="Senhorita">Doutor(a)</option>
               <option value="Senhorita">Pós Doc</option>
             </select>
+            <div
+              *ngIf="
+                formControls.titulo.errors?.required &&
+                formControls.titulo.touched
+              "
+              class="invalid-feedback"
+            >
+              Preencha o titulo
+            </div>
           </div>
           <div class="form-group col-sm-5">
             <label>Primeiro Nome</label>
-            <input type="text" class="form-control"/>
-
+            <input
+              type="text"
+              class="form-control"
+              formControlName="primeiroNome"
+              [ngClass]="{
+                'is-invalid':
+                  formControls.primeiroNome.errors &&
+                  formControls.primeiroNome.touched
+              }"
+            />
+            <div
+              *ngIf="
+                formControls.primeiroNome.errors?.required &&
+                formControls.primeiroNome.touched
+              "
+              class="invalid-feedback"
+            >
+              Preencha o primeiro nome
+            </div>
           </div>
           <div class="form-group col-sm-5">
             <label>Último nome</label>
-            <input type="text" class="form-control"/>
-
+            <input
+              type="text"
+              class="form-control"
+              formControlName="ultimoNome"
+              [ngClass]="{
+                'is-invalid':
+                  formControls.ultimoNome.errors &&
+                  formControls.ultimoNome.touched
+              }"
+            />
+            <div
+              *ngIf="
+                formControls.ultimoNome.errors?.required &&
+                formControls.ultimoNome.touched
+              "
+              class="invalid-feedback"
+            >
+              Preencha o último nome
+            </div>
           </div>
         </div>
         <div class="form-row">
           <div class="form-group col-sm-5">
             <label>E-mail</label>
-            <input type="text" class="form-control" />
+            <input
+              type="email"
+              class="form-control"
+              formControlName="email"
+              [ngClass]="{
+                'is-invalid':
+                  formControls.email.errors && formControls.email.touched
+              }"
+              placeholder="fulano@email.com.br"
+            />
+            <div
+              *ngIf="
+                formControls.email.errors?.required &&
+                formControls.email.touched
+              "
+              class="invalid-feedback"
+            >
+              Preencha o e-mail
+            </div>
+            <div
+              *ngIf="
+                formControls.email.errors?.email && formControls.email.touched
+              "
+              class="invalid-feedback"
+            >
+              E-mail inválido
+            </div>
           </div>
           <div class="form-group col-sm-4">
             <label>Telefone</label>
-            <input type="text" class="form-control" />
+            <input
+              type="text"
+              class="form-control"
+              formControlName="telefone"
+              [ngClass]="{
+                'is-invalid':
+                  formControls.telefone.errors && formControls.telefone.touched
+              }"
+              placeholder="(000) 90000-0000"
+            />
+            <div
+              *ngIf="
+                formControls.telefone.errors?.required &&
+                formControls.telefone.touched
+              "
+              class="invalid-feedback"
+            >
+              Preencha o telefone
+            </div>
           </div>
           <div class="form-group col-sm">
             <label>Função</label>
-            <select class="form-control">
+            <select
+              class="form-control"
+              formControlName="funcao"
+              [ngClass]="{
+                'is-invalid':
+                  formControls.funcao.errors && formControls.funcao.touched
+              }"
+            >
               <option value=""></option>
               <option value="Participante">Participante</option>
               <option value="Palestrante">Palestrante</option>
             </select>
+            <div
+              *ngIf="
+                formControls.funcao.errors?.required &&
+                formControls.funcao.touched
+              "
+              class="invalid-feedback"
+            >
+              Preencha a função
+            </div>
           </div>
           <form-group class="col-12">
             <label>Descrição</label>
-            <input type="text" class="form-control" />
+            <input
+              type="text"
+              class="form-control"
+              formControlName="descricao"
+              [ngClass]="{
+                'is-invalid':
+                  formControls.descricao.errors &&
+                  formControls.descricao.touched
+              }"
+            />
+            <div
+              *ngIf="
+                formControls.descricao.errors?.required &&
+                formControls.descricao.touched
+              "
+              class="invalid-feedback"
+            >
+              Preencha a descrição
+            </div>
+            <div
+              *ngIf="
+                formControls.descricao.errors?.maxlength &&
+                formControls.descricao.touched
+              "
+              class="invalid-feedback"
+            >
+              A descrição não pode ser superior a 250 caracteres
+            </div>
           </form-group>
         </div>
         <div>
@@ -97,26 +238,60 @@
         <div class="form-row">
           <div class="form-group col-sm">
             <label>Senha</label>
-            <input type="password" class="form-control" />
+            <input
+              type="password"
+              class="form-control"
+              formControlName="senha"
+              [ngClass]="{
+                'is-invalid':
+                  formControls.senha.errors && formControls.senha.touched
+              }"
+            />
+            <div
+              *ngIf="
+                formControls.senha.errors?.minlength &&
+                formControls.descricao.touched
+              "
+              class="invalid-feedback"
+            >
+              A senha deve possuir no mínimo 6 caracteres
+            </div>
           </div>
           <div class="form-group col-sm">
             <label>Confirmar Senha</label>
-            <input type="password" class="form-control" />
+            <input
+              type="password"
+              class="form-control"
+              formControlName="confirmarSenha"
+              [ngClass]="{
+                'is-invalid':
+                  formControls.confirmarSenha.errors &&
+                  formControls.confirmarSenha.touched
+              }"
+            />
+            <div
+              *ngIf="formControls.confirmarSenha.errors?.mustMatch"
+              class="invalid-feedback"
+            >
+              Repita a senha digitada
+            </div>
           </div>
         </div>
       </div>
     </div>
     <div class="card-footer">
       <div class="d-flex">
-        <button class="btn btn-outline-secondary mr-auto border">
+        <button
+          class="btn btn-outline-secondary mr-auto border"
+          (click)="resetForm()"
+        >
           Cancelar Alteração
         </button>
-        <button class="btn btn-success">
+        <button class="btn btn-success" [disabled]="form.invalid">
           <!-- <span class="spinner-border spinner-border-sm mr-1"></span> -->
           Salvar Alteração
         </button>
       </div>
     </div>
   </form>
-
 </div>

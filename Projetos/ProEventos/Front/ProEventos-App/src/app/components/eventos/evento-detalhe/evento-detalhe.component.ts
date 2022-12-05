@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-evento-detalhe',
@@ -9,9 +9,10 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 export class EventoDetalheComponent implements OnInit {
   form: FormGroup = new FormGroup({});
 
-  get formControls(): any {
+  public get formControls(): any {
     return this.form.controls;
   }
+
   constructor(private formBuilder: FormBuilder) {}
 
   ngOnInit(): void {
@@ -19,19 +20,25 @@ export class EventoDetalheComponent implements OnInit {
   }
 
   public validation(): void {
-    this.form = this.formBuilder.group(
-      {
-        tema: ['',[Validators.required, Validators.minLength(4), Validators.maxLength(50)]],
-        local: ['', Validators.required],
-        dataEvento: ['',[Validators.required]],
-        qtdPessoas: ['', [ Validators.required, Validators.max(120000)]],
-        telefone: ['', Validators.required],
-        email: ['',[Validators.required, Validators.email]],
-        imageUrl: ['',Validators.required],
-      });
+    this.form = this.formBuilder.group({
+      tema: [
+        '',
+        [
+          Validators.required,
+          Validators.minLength(4),
+          Validators.maxLength(50),
+        ],
+      ],
+      local: ['', Validators.required],
+      dataEvento: ['', [Validators.required]],
+      qtdPessoas: ['', [Validators.required, Validators.max(120000)]],
+      telefone: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email]],
+      imageUrl: ['', Validators.required],
+    });
   }
 
-  protected resetForm(): void{
+  protected resetForm(): void {
     this.form.reset();
   }
 }
