@@ -19,6 +19,12 @@ export class RegistrationComponent implements OnInit {
     return this.form.controls;
   }
 
+  onSubmit():void {
+    if(this.form.invalid){
+      return;
+    }
+  }
+
   constructor(private _formBuilder: FormBuilder) {}
 
   ngOnInit(): void {
