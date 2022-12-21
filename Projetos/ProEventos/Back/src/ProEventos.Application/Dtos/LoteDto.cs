@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace ProEventos.Application.Dtos
 {
@@ -17,11 +18,11 @@ namespace ProEventos.Application.Dtos
 
         [Display(Name = "Data início")]
         [Required(ErrorMessage = "{0} é obrigatória.")]
-        public string DataInicio { get; set; }
+        public DateTime DataInicio { get; set; }
 
         [Display(Name = "Data fim")]
         [Required(ErrorMessage = "{0} é obrigatória.")]
-        public string DataFim { get; set; }
+        public DateTime DataFim { get; set; }
 
         [Display(Name = "Quantidade")]
         [Required(ErrorMessage = "{0} é obrigatória.")]

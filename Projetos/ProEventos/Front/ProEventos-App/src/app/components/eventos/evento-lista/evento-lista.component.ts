@@ -19,6 +19,7 @@ export class EventoListaComponent implements OnInit {
   public margemImg: number = 2;
   public ocultarImagem: boolean = true;
   private _filtroLista: string = '';
+  public eventoId: number = 0;
 
   public get filtroLista(): string {
     return this._filtroLista;
@@ -41,24 +42,22 @@ export class EventoListaComponent implements OnInit {
 
   public ngOnInit(): void {
     this.spinner.show();
-    this.getEventos();
+    this.carregarEventos();
   }
 
   public alterarImagem(): void {
     this.ocultarImagem = !this.ocultarImagem;
   }
 
-  public getEventos(): void {
+  public carregarEventos(): void {
     this.EventoService.getEventos().subscribe({
       next: (v: Evento[]) => {
         (this.eventos = v), (this.eventosFiltrados = this.eventos);
       },
       error: (e: any) => {
-        this.spinner.hide();
         this.toastr.error('Erro ao carregar Eventos', 'Erro!');
-      },
-      complete: () => this.spinner.hide(),
-    });
+      }
+    }).add(() => this.spinner.hide());
   }
 
   public filtrarEventos(filtrarPor: string): Evento[] {
@@ -70,16 +69,30 @@ export class EventoListaComponent implements OnInit {
     );
   }
 
-  public openModal(template: TemplateRef<any>): void {
+  public openModal(event: any, template: TemplateRef<any>, eventoId: number): void {
+    event.stopPropagation();
+    this.eventoId = eventoId;
     this.modalRef = this.modalService.show(template, { class: 'modal-sm' });
   }
 
-  public confirm(): void {
+  public confirmDelete(): void {
     this.modalRef?.hide();
-    this.toastr.success('Evento excluído com sucesso', 'Excluído!');
+    this.spinner.show();
+
+    this.EventoService.deleteEvento(this.eventoId).subscribe(
+      {
+        next: () => {
+            this.toastr.success(`Evento ${this.eventoId} foi excluído`, 'Excluído!');
+            this.carregarEventos()
+        },
+        error: () => {
+          this.toastr.error('Erro ao apagar evento', 'Erro!');
+        }
+      }
+    ).add(() => this.spinner.hide());
   }
 
-  public decline(): void {
+  public declineDelete(): void {
     this.modalRef?.hide();
   }
   public detalheEvento(id: number): void {

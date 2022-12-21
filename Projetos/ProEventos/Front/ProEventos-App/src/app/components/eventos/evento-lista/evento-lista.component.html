@@ -59,14 +59,14 @@
         <td>{{ e.local }}</td>
         <td>{{ e.dataEvento | DateFormatPipe }}</td>
         <td class="d-none d-md-table-cell">{{ e.qtdPessoas }}</td>
-        <td class="d-none d-md-table-cell">{{ e.lotes[0].nome }}</td>
+        <td class="d-none d-md-table-cell"></td>
         <td>
           <div class="btn-group">
             <button
               type="button"
               class="btn btn-danger btn-lg"
               tooltip="Excluir"
-              (click)="openModal(template)"
+              (click)="openModal($event, template, e.id)"
             >
               <i class="fa fa-trash"></i>
             </button>
@@ -86,11 +86,11 @@
 
 <ng-template #template>
   <div class="modal-body text-center">
-    <p>Deseja apagar este evento?</p>
-    <button type="button" class="btn btn-default" (click)="confirm()">
+    <p>Deseja apagar o evento {{this.eventoId}}?</p>
+    <button type="button" class="btn btn-default" (click)="confirmDelete()">
       Sim
     </button>
-    <button type="button" class="btn btn-primary" (click)="decline()">
+    <button type="button" class="btn btn-primary" (click)="declineDelete()">
       Não
     </button>
   </div>

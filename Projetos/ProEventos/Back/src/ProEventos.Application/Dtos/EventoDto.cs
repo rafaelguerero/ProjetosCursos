@@ -18,7 +18,7 @@ namespace ProEventos.Application.Dtos
 
         [Display(Name = "Data Evento")]
         [Required(ErrorMessage = "O campo {0} é obrigatório.")]        
-        public string DataEvento { get; set; }
+        public DateTime DataEvento { get; set; }
 
         [Display(Name = "Quantidade de pessoas"),
         Range(1, 120000, ErrorMessage = "A {0} deve ser entre 1 e 120.000")]

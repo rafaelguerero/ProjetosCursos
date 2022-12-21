@@ -46,4 +46,5 @@ Criar tags html dinamicamente
 Ctrl + shift + alt + seta para baixo: Cria cursores para seleção de linhas
 
 Ctrl + shift + p : lowercase
-I
+
+shift + alt + f : identar

@@ -9,13 +9,34 @@
           <input
             type="text"
             class="form-control"
-            [ngClass]="{'is-invalid': formControls.tema.errors && formControls.tema.touched }"
+            [ngClass]="cssValidator(formControls.tema)"
             formControlName="tema"
             placeholder="Insira o Tema"
           />
-          <div *ngIf="formControls.tema.errors?.required && formControls.tema.touched" class="invalid-feedback">O tema é obrigatório</div>
-          <div *ngIf="formControls.tema.errors?.minlength && formControls.tema.touched" class="invalid-feedback">O tema deve ter no mínimo 4 caracteres</div>
-          <div *ngIf="formControls.tema.errors?.maxlength && formControls.tema.touched" class="invalid-feedback">O tema deve ter no máximo 50 caracteres</div>
+          <div
+            *ngIf="
+              formControls.tema.errors?.required && formControls.tema.touched
+            "
+            class="invalid-feedback"
+          >
+            O tema é obrigatório
+          </div>
+          <div
+            *ngIf="
+              formControls.tema.errors?.minlength && formControls.tema.touched
+            "
+            class="invalid-feedback"
+          >
+            O tema deve ter no mínimo 4 caracteres
+          </div>
+          <div
+            *ngIf="
+              formControls.tema.errors?.maxlength && formControls.tema.touched
+            "
+            class="invalid-feedback"
+          >
+            O tema deve ter no máximo 50 caracteres
+          </div>
         </div>
       </div>
       <div class="form-row">
@@ -23,23 +44,41 @@
           <label>Local</label>
           <input
             type="text"
-            [ngClass]="{'is-invalid': formControls.local.errors && formControls.local.touched }"
+            [ngClass]="cssValidator(formControls.local)"
             class="form-control"
             formControlName="local"
             placeholder=""
           />
-          <div *ngIf="formControls.local.errors?.required && formControls.local.touched" class="invalid-feedback">O local é obrigatório</div>
+          <div
+            *ngIf="
+              formControls.local.errors?.required && formControls.local.touched
+            "
+            class="invalid-feedback"
+          >
+            O local é obrigatório
+          </div>
         </div>
         <div class="form-group col-md-4">
           <label>Data e Hora</label>
           <input
-            type="datetime-local"
-            [ngClass]="{'is-invalid': formControls.dataEvento.errors && formControls.dataEvento.touched }"
+            type="datetime"
+            [ngClass]="cssValidator(formControls.dataEvento)"
             class="form-control"
             formControlName="dataEvento"
+            value="{{ evento.dataEvento | DateFormatPipe }}"
             placeholder=""
+            bsDatepicker
+            [bsConfig]="bsConfig"
           />
-          <div *ngIf="formControls.dataEvento.errors?.required && formControls.dataEvento.touched" class="invalid-feedback">A data do evento é obrigatória</div>
+          <div
+            *ngIf="
+              formControls.dataEvento.errors?.required &&
+              formControls.dataEvento.touched
+            "
+            class="invalid-feedback"
+          >
+            A data do evento é obrigatória
+          </div>
         </div>
       </div>
       <div class="form-row">
@@ -47,56 +86,109 @@
           <label>Qtd Pessoas</label>
           <input
             type="number"
-            [ngClass]="{'is-invalid': formControls.qtdPessoas.errors && formControls.qtdPessoas.touched }"
+            [ngClass]="cssValidator(formControls.qtdPessoas)"
             class="form-control"
             formControlName="qtdPessoas"
             placeholder=""
           />
-          <div *ngIf="formControls.qtdPessoas.errors?.required && formControls.qtdPessoas.touched" class="invalid-feedback">A quantidade de pessoas é obrigatória</div>
-          <div *ngIf="formControls.qtdPessoas.errors?.max && formControls.qtdPessoas.touched" class="invalid-feedback">A quantidade não deve ser superior a 120000</div>
+          <div
+            *ngIf="
+              formControls.qtdPessoas.errors?.required &&
+              formControls.qtdPessoas.touched
+            "
+            class="invalid-feedback"
+          >
+            A quantidade de pessoas é obrigatória
+          </div>
+          <div
+            *ngIf="
+              formControls.qtdPessoas.errors?.max &&
+              formControls.qtdPessoas.touched
+            "
+            class="invalid-feedback"
+          >
+            A quantidade não deve ser superior a 120000
+          </div>
         </div>
         <div class="form-group col-md-2">
           <label>Telefone</label>
           <input
             type="text"
-            [ngClass]="{'is-invalid': formControls.telefone.errors && formControls.telefone.touched }"
+            [ngClass]="cssValidator(formControls.telefone)"
             class="form-control"
             formControlName="telefone"
             placeholder="(000) 90000-0000"
           />
-          <div *ngIf="formControls.telefone.errors?.required && formControls.telefone.touched" class="invalid-feedback">O telefone é obrigatório</div>
+          <div
+            *ngIf="
+              formControls.telefone.errors?.required &&
+              formControls.telefone.touched
+            "
+            class="invalid-feedback"
+          >
+            O telefone é obrigatório
+          </div>
         </div>
         <div class="form-group col-md-4">
           <label>Email</label>
           <input
             type="email"
-            [ngClass]="{'is-invalid': formControls.email.errors && formControls.email.touched }"
+            [ngClass]="cssValidator(formControls.email)"
             class="form-control is-invalid"
             formControlName="email"
             placeholder="e-mail"
           />
-          <div *ngIf="formControls.email.errors?.required && formControls.email.touched" class="invalid-feedback">O e-mail é obrigatório</div>
-          <div *ngIf="formControls.email.errors?.email && formControls.email.touched" class="invalid-feedback">E-mail inválido</div>
+          <div
+            *ngIf="
+              formControls.email.errors?.required && formControls.email.touched
+            "
+            class="invalid-feedback"
+          >
+            O e-mail é obrigatório
+          </div>
+          <div
+            *ngIf="
+              formControls.email.errors?.email && formControls.email.touched
+            "
+            class="invalid-feedback"
+          >
+            E-mail inválido
+          </div>
         </div>
         <div class="form-group col-md-4">
           <label>Imagem</label>
           <input
             type="text"
-            [ngClass]="{'is-invalid': formControls.imageUrl.errors && formControls.imageUrl.touched }"
+            [ngClass]="cssValidator(formControls.imageUrl)"
             class="form-control is-invalid"
             formControlName="imageUrl"
             placeholder="imagem"
           />
-          <div *ngIf="formControls.imageUrl.errors?.required && formControls.imageUrl.touched" class="invalid-feedback">A imagem é obrigatória</div>
+          <div
+            *ngIf="
+              formControls.imageUrl.errors?.required &&
+              formControls.imageUrl.touched
+            "
+            class="invalid-feedback"
+          >
+            A imagem é obrigatória
+          </div>
         </div>
       </div>
     </div>
     <div class="card-footer">
       <div class="d-flex">
-        <button class="btn btn-outline-secondary mr-auto border" (click)="resetForm()">
+        <button
+          class="btn btn-outline-secondary mr-auto border"
+          (click)="resetForm()"
+        >
           Cancelar Alteração
         </button>
-        <button class="btn btn-success" [disabled]="form.invalid">
+        <button
+          class="btn btn-success"
+          [disabled]="form.invalid"
+          (click)="salvarEvento()"
+        >
           <!-- <span class="spinner-border spinner-border-sm mr-1"></span> -->
           Salvar Evento
         </button>

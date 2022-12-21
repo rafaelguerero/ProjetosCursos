@@ -87,7 +87,7 @@ namespace ProEventos.API.Controllers
             }
         }
 
-        [HttpPut]
+        [HttpPut("{id}")]
         public async Task<IActionResult> Put(int id, EventoDto model)
         {
             try
@@ -103,12 +103,14 @@ namespace ProEventos.API.Controllers
             }
         }
 
-        [HttpDelete]
+        [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
         {
             try
             {
-                return await _eventoService.DeleteEvento(id) ? Ok($"Evento foi excluído") : BadRequest($"Não foi possível excluir o evento");
+                return await _eventoService.DeleteEvento(id)
+                    ? Ok (new { message = $"Deletado" }) 
+                    : BadRequest($"Não foi possível excluir o evento");
                 
             }
             catch (Exception ex)
