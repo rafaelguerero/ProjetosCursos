@@ -5,7 +5,7 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Evento } from '@app/models/Evento';
 import { EventoService } from '@app/services/evento.service';
 import { BsLocaleService } from 'ngx-bootstrap/datepicker';
@@ -42,7 +42,8 @@ export class EventoDetalheComponent implements OnInit {
     private _router: ActivatedRoute,
     private _eventoService: EventoService,
     private _toastr: ToastrService,
-    private _spinner: NgxSpinnerService
+    private _spinner: NgxSpinnerService,
+    private _routerBack: Router
   ) {
     this._localeService.use('pt-br');
   }
@@ -58,15 +59,18 @@ export class EventoDetalheComponent implements OnInit {
     if (eventoIdParam !== null) {
       this._spinner.show();
       this._estadoSalvar = 'put';
-      this._eventoService.getEventoById(+eventoIdParam).subscribe({
-        next: (evento: Evento) => {
-          this.evento = { ...evento };
-          this.form.patchValue(this.evento);
-        },
-        error: () => {
-          this._toastr.error('Erro ao carregar Evento', 'Erro!');
-        }
-      }).add(() => this._spinner.hide());
+      this._eventoService
+        .getEventoById(+eventoIdParam)
+        .subscribe({
+          next: (evento: Evento) => {
+            this.evento = { ...evento };
+            this.form.patchValue(this.evento);
+          },
+          error: () => {
+            this._toastr.error('Erro ao carregar Evento', 'Erro!');
+          },
+        })
+        .add(() => this._spinner.hide());
     }
   }
 
@@ -102,16 +106,25 @@ export class EventoDetalheComponent implements OnInit {
           ? { ...this.form.value }
           : { id: this.evento.id, ...this.form.value };
 
-      this._eventoService[this._estadoSalvar](this.evento).subscribe({
-        next: () => this._toastr.success('Evento salvo.', 'Sucesso'),
-        error: () => {
-          this._toastr.error('Não foi possível salvar o evento.', 'Erro');
-        }
-      }).add(() => this._spinner.hide());
+      this._eventoService[this._estadoSalvar](this.evento)
+        .subscribe({
+          next: () => this._toastr.success('Evento salvo.', 'Sucesso'),
+          error: () => {
+            this._toastr.error('Não foi possível salvar o evento.', 'Erro');
+          },
+        })
+        .add(() => {
+          this._spinner.hide();
+          this.voltarParaEventosLista();
+        });
     }
   }
 
   protected resetForm(): void {
     this.form.reset();
+  }
+
+  protected voltarParaEventosLista(): void {
+    this._routerBack.navigate([`eventos/lista`]);
   }
 }
