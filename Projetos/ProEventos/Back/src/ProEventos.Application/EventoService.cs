@@ -72,7 +72,7 @@ namespace ProEventos.Application
             try
             {
                 var evento = await _eventoPersist.GetEventoByIdAsync(eventoId, false);
-                if (evento == null) throw new Exception("Evento delete não foi encontrado.");
+                if (evento == null) throw new Exception("Evento para delete não foi encontrado.");
 
                 _geralPersist.Delete<Evento>(evento);
 

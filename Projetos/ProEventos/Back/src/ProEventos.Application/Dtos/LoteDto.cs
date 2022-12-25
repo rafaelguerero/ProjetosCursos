@@ -16,12 +16,10 @@ namespace ProEventos.Application.Dtos
         [Range(1, 50000, ErrorMessage = "O {0} deve ser entre 1 e 50.000")]
         public decimal Preco { get; set; }
 
-        [Display(Name = "Data início")]
-        [Required(ErrorMessage = "{0} é obrigatória.")]
+        [Display(Name = "Data início")]        
         public DateTime DataInicio { get; set; }
 
-        [Display(Name = "Data fim")]
-        [Required(ErrorMessage = "{0} é obrigatória.")]
+        [Display(Name = "Data fim")]        
         public DateTime DataFim { get; set; }
 
         [Display(Name = "Quantidade")]

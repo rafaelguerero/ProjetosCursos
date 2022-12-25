@@ -1,9 +1,6 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using System;
+﻿using System;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Http;
-using ProEventos.Domain;
 using ProEventos.Application.Contratos;
 using System.Threading.Tasks;
 using ProEventos.Application.Dtos;
