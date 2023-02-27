@@ -1,3 +1,4 @@
+using ProEventos.Domain.Identity;
 using System;
 using System.Collections.Generic;
 
@@ -16,5 +17,7 @@ namespace ProEventos.Domain
         public IEnumerable<Lote> Lotes { get; set; }
         public IEnumerable<RedeSocial> RedesSociais { get; set; }
         public IEnumerable<PalestranteEvento> PalestrantesEventos { get; set; }
+        public int UserId { get; set; }
+        public User User { get; set; }
     }
 }

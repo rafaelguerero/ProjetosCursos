@@ -48,3 +48,6 @@ Ctrl + shift + alt + seta para baixo: Cria cursores para seleção de linhas
 Ctrl + shift + p : lowercase
 
 shift + alt + f : identar
+
+--Variável de ambiente npm
+%AppData%\npm

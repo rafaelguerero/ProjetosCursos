@@ -10,7 +10,6 @@ using ProEventos.Application;
 using ProEventos.Application.Contratos;
 using ProEventos.Persistence.Contratos;
 using ProEventos.Persistence;
-using AutoMapper;
 using System;
 using Microsoft.Extensions.FileProviders;
 using System.IO;
