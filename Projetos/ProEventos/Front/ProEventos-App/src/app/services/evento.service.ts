@@ -1,5 +1,5 @@
 import { environment } from '@environments/environment';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, take } from 'rxjs';
 import { Evento } from '../models/Evento';
@@ -8,6 +8,7 @@ import { Evento } from '../models/Evento';
 //{  providedIn: 'root',}
 export class EventoService {
   private _baseUrl = environment.apiUrl + 'api/eventos';
+
   constructor(private http: HttpClient) {}
 
   public getEventos(): Observable<Evento[]> {
@@ -23,15 +24,11 @@ export class EventoService {
   }
 
   public getEventoById(id: number): Observable<Evento> {
-    return this.http
-      .get<Evento>(`${this._baseUrl}/${id}`)
-      .pipe(take(1));
+    return this.http.get<Evento>(`${this._baseUrl}/${id}`).pipe(take(1));
   }
 
   public post(evento: Evento): Observable<Evento> {
-    return this.http
-      .post<Evento>(this._baseUrl, evento)
-      .pipe(take(1));
+    return this.http.post<Evento>(this._baseUrl, evento).pipe(take(1));
   }
 
   public put(evento: Evento): Observable<Evento> {
@@ -41,13 +38,10 @@ export class EventoService {
   }
 
   public deleteEvento(id: number): Observable<Evento> {
-    return this.http
-      .delete<Evento>(`${this._baseUrl}/${id}`)
-      .pipe(take(1));
+    return this.http.delete<Evento>(`${this._baseUrl}/${id}`).pipe(take(1));
   }
 
-  public postUploadImage(eventoId: number, file: File): Observable<Evento>{
-
+  public postUploadImage(eventoId: number, file: File): Observable<Evento> {
     const fileToUpload = file[0] as File;
     const formData = new FormData();
     formData.append('file', fileToUpload);

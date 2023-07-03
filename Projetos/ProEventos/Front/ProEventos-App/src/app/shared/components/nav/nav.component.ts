@@ -1,3 +1,4 @@
+import { AccountService } from './../../../services/account.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
@@ -8,10 +9,16 @@ import { Router } from '@angular/router';
 })
 export class NavComponent implements OnInit {
   public isCollapsed: boolean = true;
+  public usuarioLogado = false;
 
-  constructor(private router: Router) {}
+  constructor(public accountService: AccountService, private router: Router) {}
 
   ngOnInit(): void {}
+
+  public logout(): void {
+    this.accountService.logout();
+    this.router.navigateByUrl('/user/login');
+  }
 
   protected showMenu(): boolean {
     return this.router.url !== '/user/login';

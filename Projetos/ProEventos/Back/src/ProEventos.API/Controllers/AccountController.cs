@@ -17,7 +17,7 @@ namespace ProEventos.API.Controllers
         private readonly IAccountService _accountService;
         private readonly ITokenService _tokenService;
 
-        public AccountController(IAccountService accountService, 
+        public AccountController(IAccountService accountService,
                                  ITokenService tokenService)
         {
             _accountService = accountService;
@@ -25,7 +25,7 @@ namespace ProEventos.API.Controllers
         }
 
         [HttpGet("GetUser")]
-        
+
         public async Task<IActionResult> GetUser()
         {
             try
@@ -46,24 +46,30 @@ namespace ProEventos.API.Controllers
         {
             try
             {
-                if (await _accountService.UserExists(userDto.Username))                
+                if (await _accountService.UserExists(userDto.Username))
                     return BadRequest("Usuário já existe");
 
                 var user = await _accountService.CreateAccountAsync(userDto);
 
                 if (user != null)
-                    return Ok(user);
+                    return Ok(new
+                    {
+                        UserName = user.UserName,
+                        PrimeiroNome = user.PrimeiroNome,
+                        Token = _tokenService.CreateToken(user).Result
+                    });
 
                 return BadRequest("Usuário não foi criado, tente novamente.");
             }
             catch (Exception ex)
             {
-                return this.StatusCode(StatusCodes.Status500InternalServerError, 
+                return this.StatusCode(StatusCodes.Status500InternalServerError,
                     $"Erro ao tentar registrar usuário. Erro: {ex.Message}");
             }
         }
 
-        [HttpPost("Login")]        
+        [HttpPost("Login")]
+        [AllowAnonymous]
         public async Task<IActionResult> Login(UserLoginDto userLoginDto)
         {
             try
@@ -76,9 +82,9 @@ namespace ProEventos.API.Controllers
 
                 if (!result.Succeeded) return Unauthorized("Usuário ou senha inválidos.");
 
-                return Ok(new 
+                return Ok(new
                 {
-                    UserName = user.Username,
+                    UserName = user.UserName,
                     PrimeiroNome = user.PrimeiroNome,
                     Token = _tokenService.CreateToken(user).Result
                 });
@@ -89,11 +95,14 @@ namespace ProEventos.API.Controllers
             }
         }
 
-        [HttpPut("UpdateUser")]        
+        [HttpPut("UpdateUser")]
         public async Task<IActionResult> UpdateUser(UserUpdateDto userUpdateDto)
         {
             try
             {
+                if (userUpdateDto.UserName != User.GetUserName())
+                    return Unauthorized("Usuário inválido");
+
                 var user = await _accountService.GetUserByUserNameAsync(User.GetUserName());
 
                 if (user == null) return Unauthorized("Usuário inválido.");
@@ -102,7 +111,12 @@ namespace ProEventos.API.Controllers
 
                 if (usuarioRetorno == null) return NoContent();
 
-                return Ok(userUpdateDto);
+                return Ok(new
+                {
+                    UserName = user.UserName,
+                    PrimeiroNome = user.PrimeiroNome,
+                    Token = _tokenService.CreateToken(user).Result
+                });
             }
             catch (Exception ex)
             {

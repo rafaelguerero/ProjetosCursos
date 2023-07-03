@@ -12,7 +12,7 @@
   </div>
 
   <div class="col-md-6">
-    <form [formGroup]="form" class="p-1">
+    <form [formGroup]="form" class="p-1" (ngSubmit)="register()">
       <div class="pb-2 d-block d-md-none">
         <h3 class="border-bottom">Cadastro de Usuário</h3>
       </div>
@@ -96,17 +96,17 @@
         <input
           class="form-control"
           type="text"
-          formControlName="usuario"
+          formControlName="userName"
           [ngClass]="{
             'is-invalid':
-              formControls.usuario.errors && formControls.usuario.touched
+              formControls.userName.errors && formControls.userName.touched
           }"
           placeholder="Insira o nome de Usuário"
         />
         <div
           *ngIf="
-            formControls.usuario.errors?.required &&
-            formControls.usuario.touched
+            formControls.userName.errors?.required &&
+            formControls.userName.touched
           "
           class="invalid-feedback"
         >
@@ -119,16 +119,17 @@
           <input
             class="form-control"
             type="password"
-            formControlName="senha"
+            formControlName="password"
             [ngClass]="{
               'is-invalid':
-                formControls.senha.errors && formControls.senha.touched
+                formControls.password.errors && formControls.password.touched
             }"
             placeholder="Digite uma Senha"
           />
           <div
             *ngIf="
-              formControls.senha.errors?.required && formControls.senha.touched
+              formControls.password.errors?.required &&
+              formControls.password.touched
             "
             class="invalid-feedback"
           >
@@ -136,7 +137,8 @@
           </div>
           <div
             *ngIf="
-              formControls.senha.errors?.minlength && formControls.senha.touched
+              formControls.password.errors?.minlength &&
+              formControls.password.touched
             "
             class="invalid-feedback"
           >
@@ -148,25 +150,25 @@
           <input
             class="form-control"
             type="password"
-            formControlName="confirmarSenha"
+            formControlName="confirmarPassword"
             [ngClass]="{
               'is-invalid':
-                formControls.confirmarSenha.errors &&
-                formControls.confirmarSenha.touched
+                formControls.confirmarPassword.errors &&
+                formControls.confirmarPassword.touched
             }"
             placeholder="Confirme a Senha"
           />
           <div
             *ngIf="
-              formControls.confirmarSenha.errors?.required &&
-              formControls.confirmarSenha.touched
+              formControls.confirmarPassword.errors?.required &&
+              formControls.confirmarPassword.touched
             "
             class="invalid-feedback"
           >
             Confirme a senha
           </div>
           <div
-            *ngIf="formControls.confirmarSenha.errors?.mustMatch"
+            *ngIf="formControls.confirmarPassword.errors?.mustMatch"
             class="invalid-feedback"
           >
             Repita a senha digitada
@@ -187,7 +189,7 @@
       </div>
       <div class="form-row">
         <div class="form-group col-12">
-          <button class="btn btn-lg btn-success btn-block px-5">
+          <button class="btn btn-lg btn-success btn-block px-5" type="submit" [disabled]="form.invalid">
             Registar
           </button>
         </div>
