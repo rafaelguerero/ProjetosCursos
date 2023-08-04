@@ -9,14 +9,14 @@
           type="text"
           class="form-control"
           placeholder="Filtrar por Tema e Local"
-          [(ngModel)]="filtroLista"
+          (input)="filtrarEventos($event.target)"
         />
       </div>
     </div>
     <div>
       <a class="d-flex btn btn-outline-primary" routerLink="/eventos/detalhe">
         <i class="fa fa-plus-circle my-1"></i>
-        <b class="ml-1 d-none d-sm-block" >Novo</b>
+        <b class="ml-1 d-none d-sm-block">Novo</b>
       </a>
     </div>
   </div>
@@ -44,7 +44,11 @@
       </tr>
     </thead>
     <tbody *ngIf="eventos && eventos.length">
-      <tr *ngFor="let e of eventosFiltrados" (click)="detalheEvento(e.id)" style="cursor: pointer;">
+      <tr
+        *ngFor="let e of eventos"
+        (click)="detalheEvento(e.id)"
+        style="cursor: pointer"
+      >
         <td class="d-none d-md-table-cell">
           <img
             [src]="mostrarImagem(e.imageUrl)"
@@ -59,7 +63,9 @@
         <td>{{ e.local }}</td>
         <td>{{ e.dataEvento | DateFormatPipe }}</td>
         <td class="d-none d-md-table-cell">{{ e.qtdPessoas }}</td>
-        <td class="d-none d-md-table-cell">{{e.lotes[0]?.nome | uppercase}}</td>
+        <td class="d-none d-md-table-cell">
+          {{ e.lotes[0]?.nome | uppercase }}
+        </td>
         <td>
           <div class="btn-group">
             <button
@@ -82,11 +88,26 @@
       </tr>
     </tfoot>
   </table>
+  <div class="d-flex justify-content-center">
+    <pagination
+      [boundaryLinks]="true"
+      [totalItems]="pagination.totalItems"
+      [itemsPerPage]="pagination.itemsPerPage"
+      previousText="&lsaquo;"
+      nextText="&rsaquo;"
+      firstText="&laquo;"
+      lastText="&raquo;"
+      [(ngModel)]="pagination.currentPage"
+      pageBtnClass="btn"
+      (pageChanged)="pageChanged($event)"
+    >
+    </pagination>
+  </div>
 </div>
 
 <ng-template #template>
   <div class="modal-body text-center">
-    <p>Deseja apagar o evento {{this.eventoId}}?</p>
+    <p>Deseja apagar o evento {{ this.eventoId }}?</p>
     <button type="button" class="btn btn-default" (click)="confirmDelete()">
       Sim
     </button>
