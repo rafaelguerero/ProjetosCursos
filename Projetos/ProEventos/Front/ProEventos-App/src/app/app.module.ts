@@ -14,6 +14,7 @@ import { PaginationModule } from 'ngx-bootstrap/pagination';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { ptBrLocale } from 'ngx-bootstrap/locale';
+import { TabsModule } from 'ngx-bootstrap/tabs';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -36,6 +37,10 @@ import { NgxCurrencyModule } from 'ngx-currency';
 import { AccountService } from './services/account.service';
 import { JwtInterceptor } from './interceptors/jwt.interceptor';
 import { HomeComponent } from './components/home/home.component';
+import { PerfilDetalheComponent } from './components/user/perfil/perfil-detalhe/perfil-detalhe.component';
+import { RedesSociaisComponent } from './components/redes-sociais/redes-sociais.component';
+import { PalestranteDetalheComponent } from './components/palestrantes/palestrante-detalhe/palestrante-detalhe.component';
+import { PalestranteListaComponent } from './components/palestrantes/palestrante-lista/palestrante-lista.component';
 
 defineLocale('pt-br', ptBrLocale);
 @NgModule({
@@ -55,6 +60,10 @@ defineLocale('pt-br', ptBrLocale);
     LoginComponent,
     RegistrationComponent,
     HomeComponent,
+    PerfilDetalheComponent,
+    RedesSociaisComponent,
+    PalestranteDetalheComponent,
+    PalestranteListaComponent,
   ],
   imports: [
     BrowserModule,
@@ -77,6 +86,7 @@ defineLocale('pt-br', ptBrLocale);
     BsDatepickerModule.forRoot(),
     PaginationModule.forRoot(),
     NgxCurrencyModule,
+    TabsModule.forRoot()
   ],
   providers: [
     EventoService,

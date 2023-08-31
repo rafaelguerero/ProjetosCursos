@@ -15,7 +15,7 @@
                 [ngClass]="cssValidator(formControls.tema)"
                 formControlName="tema"
                 placeholder="Insira o Tema"
-                [(ngModel)]="evento.tema"
+
               />
               <div
                 *ngIf="
@@ -55,7 +55,7 @@
                 class="form-control"
                 formControlName="local"
                 placeholder=""
-                [(ngModel)]="evento.local"
+
               />
               <div
                 *ngIf="
@@ -78,7 +78,6 @@
                 placeholder=""
                 bsDatepicker
                 [bsConfig]="bsConfig"
-                [(ngModel)]="evento.dataEvento"
               />
               <div
                 *ngIf="
@@ -100,7 +99,6 @@
                 class="form-control"
                 formControlName="qtdPessoas"
                 placeholder=""
-                [(ngModel)]="evento.qtdPessoas"
               />
               <div
                 *ngIf="
@@ -129,7 +127,6 @@
                 class="form-control"
                 formControlName="telefone"
                 placeholder="(000) 90000-0000"
-                [(ngModel)]="evento.telefone"
               />
               <div
                 *ngIf="
@@ -149,7 +146,6 @@
                 class="form-control is-invalid"
                 formControlName="email"
                 placeholder="e-mail"
-                [(ngModel)]="evento.email"
               />
               <div
                 *ngIf="
@@ -169,7 +165,6 @@
                 E-mail inválido
               </div>
             </div>
-
           </div>
         </div>
         <div class="card-footer">
@@ -309,6 +304,17 @@
             Salvar Lotes
           </button>
         </div>
+      </div>
+    </div>
+    <div class="card rounded shadow-sm mt-3" *ngIf="modoEditar">
+      <div class="p-3">
+        <div class="d-flex border-bottom">
+          <h2 class="mr-auto">Redes Sociais do Evento</h2>
+          <h2>
+            <i class="fas fa-share-square"></i>
+          </h2>
+        </div>
+        <app-redes-sociais [eventoId]="eventoId"></app-redes-sociais>
       </div>
     </div>
   </div>
